@@ -1,0 +1,23 @@
+createTable(HashMap,table_name)::=<<
+create table $table_name$($HashMap.keys:{key|$printCol(HashMap,key)$};separator=","$);
+>>
+
+printCol(HashMap,key)::=<<
+$key$ $HashMap.(key)$
+>>
+
+printStatements(inInsert,Hm,table_name)::=<<
+$Hm.keys:{key|$printSelectQuery(Hm,key,inInsert,table_name)$};separator="\n"$
+>>
+
+printSelectQuery(Hm,key,inInsert,table_name)::=<<
+insert into $table_name$($printList(inInsert)$) (select $printList(Hm.(key))$ from $key$);
+>>
+
+printList(list)::=<<
+$list:{list|$print(list)$};separator=","$
+>>
+
+print(list)::=<<
+$list$
+>>

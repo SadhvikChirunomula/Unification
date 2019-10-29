@@ -1,0 +1,8 @@
+insertTable1(inInsert,inSelect)::=<<
+insert into unify_out($printList(inInsert)$) (select $printList(inSelect)$ from t1);
+>>
+
+
+insertTable2(inInsert,inSelect)::=<<
+insert into unify_out($printList(inInsert)$) (select $printList(inSelect)$ from t2);
+>>
